@@ -915,7 +915,6 @@ struct xpad_led {
 };
 
 /**
- * set the LEDs on Xbox360 / Wireless Controllers
  * @param command
  *  0: off
  *  1: all blink, then previous setting
@@ -966,6 +965,7 @@ static void xpad_send_led_command(struct usb_xpad *xpad, int command)
 
 	usb_submit_urb(xpad->irq_out, GFP_KERNEL);
 	mutex_unlock(&xpad->odata_mutex);
+<<<<<<< HEAD
 }
 
 /*
@@ -975,6 +975,8 @@ static void xpad_send_led_command(struct usb_xpad *xpad, int command)
 static void xpad_identify_controller(struct usb_xpad *xpad)
 {
 	xpad_send_led_command(xpad, (xpad->pad_nr % 4) + 2);
+=======
+>>>>>>> 30221037921b... Input: xpad - set the LEDs properly on XBox Wireless controllers
 }
 
 static void xpad_led_set(struct led_classdev *led_cdev,
