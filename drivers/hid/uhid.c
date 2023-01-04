@@ -14,6 +14,7 @@
 #include <linux/compat.h>
 #include <linux/cred.h>
 #include <linux/device.h>
+#include <linux/fb.h>
 #include <linux/fs.h>
 #include <linux/hid.h>
 #include <linux/input.h>

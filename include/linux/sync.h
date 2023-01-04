@@ -19,6 +19,7 @@
 #include <linux/list.h>
 #include <linux/spinlock.h>
 #include <linux/wait.h>
+#include <linux/fence.h>
 
 #include <uapi/linux/sync.h>
 
@@ -146,6 +147,12 @@ struct sync_pt {
 	ktime_t			timestamp;
 };
 
+struct sync_fence_cb {
+	struct fence_cb cb;
+	struct fence *sync_pt;
+	struct sync_fence *fence;
+};
+
 /**
  * struct sync_fence - sync fence
  * @file:		file representing this fence
@@ -171,10 +178,13 @@ struct sync_fence {
 	struct list_head	waiter_list_head;
 	spinlock_t		waiter_list_lock; /* also protects status */
 	int			status;
+	int num_fences;
 
 	wait_queue_head_t	wq;
 
 	struct list_head	sync_fence_list;
+
+	struct sync_fence_cb	cbs[];
 };
 
 struct sync_fence_waiter;

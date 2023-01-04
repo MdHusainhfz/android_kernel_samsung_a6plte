@@ -645,6 +645,8 @@ static void sync_fence_free(struct kref *kref)
 		fence_put(fence->cbs[i].sync_pt);
 	}
 
+//	sync_fence_free_pts(fence);
+
 	kfree(fence);
 }
 
